@@ -1,7 +1,7 @@
 Stripe [] redStripe = new Stripe[100];
 Stripe [] whiteStripe = new Stripe[100];
 Stripe [] blueStripe = new Stripe[100];
-oddBallStripe [] oddBallStripeArray = new oddBallStripe[3];
+oddBallStripe [] oddBallStripeArray = new oddBallStripe[10];
 
 //i want order to be red, white, then blue
 
