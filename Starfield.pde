@@ -15,7 +15,7 @@ void setup()
   for (int i = 0; i < redStripe.length; i++) {
     redStripe[i] = new Stripe(1.0, 255); //initalize array of red stripes 
     whiteStripe[i] = new Stripe(2, 255, 0); //initalize array of white stripes, the 0 at the end is just for the sake of differentiating the constructors. it does nothing, ignore it.
-    blueStripe[i] = new Stripe(255, (double)4); //initalize array of blue stripes, casting speed as a double for the sake of differentiating
+    blueStripe[i] = new Stripe(255, (double)4, 0, 0); //initalize array of blue stripes, casting speed as a double for the sake of differentiating, // has two useless args at the end for the sake of differentiating
   }
   for (int i = 0; i < starsArray.length; i++) {
     starsArray[i] = new stars(); //intalize array of stars with no args
@@ -59,14 +59,14 @@ class Stripe
     mySpeed = spdSlow;
   }
 
-  Stripe(double spdMedium, int whiteColor, int justToDiffereniate) { //2nd and medium speed ring white
+  Stripe(double spdMedium, int whiteColor, int justToDiffereniate) { //2nd and medium speed ring white 
     myColor = color(whiteColor, whiteColor, whiteColor);
     myX = originX;
     myY = originY;
     myAngle = (Math.random()*90);
     mySpeed = spdMedium;
   }
-  Stripe(int blueColor, double spdFast) { // 3rd and fastest ring blue
+  Stripe(int blueColor, double spdFast, int secondDiff, int thirdDiff) { // 3rd and fastest ring blue // has two useless args at the end for the sake of differentiating
     myColor = color(0, 0, blueColor);
     myX = originX;
     myY = originY;
@@ -86,9 +86,9 @@ class Stripe
 
 void redoStripes() { //reinitalize stripes for the redo stripes, does not do anything to the stars on purpose
   for (int i = 0; i < redStripe.length; i++) {
-    redStripe[i] = new Stripe(1.5, 255);
-    whiteStripe[i] = new Stripe(3, 255, 0);
-    blueStripe[i] = new Stripe(255, (double)0.75); 
+    redStripe[i] = new Stripe(1.0, 255); //initalize array of red stripes 
+    whiteStripe[i] = new Stripe(2, 255, 0); //initalize array of white stripes, the 0 at the end is just for the sake of differentiating the constructors. it does nothing, ignore it.
+    blueStripe[i] = new Stripe(255, (double)4, 0, 0); //initalize array of blue stripes, casting speed as a double for the sake of differentiating
   }
 }
 
