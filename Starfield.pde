@@ -1,7 +1,7 @@
 Stripe [] redStripe = new Stripe[100];
 Stripe [] whiteStripe = new Stripe[100];
 Stripe [] blueStripe = new Stripe[100];
-oddBallStripe [] oddBallStripe = new oddBallStripe[3];
+oddBallStripe [] oddBallStripeArray = new oddBallStripe[3];
 
 //i want order to be red, white, then blue
 
@@ -17,8 +17,8 @@ void setup()
     whiteStripe[i] = new Stripe(2, 255, 0);
     blueStripe[i] = new Stripe(255, (double)4); // note to future self: this is mixed up, fix it.
   }
-  for (int i = 0; i < oddBallStripe.length; i++) {
-    oddBallStripe[i] = new oddBallStripe();
+  for (int i = 0; i < oddBallStripeArray.length; i++) {
+    oddBallStripeArray[i] = new oddBallStripe();
   }
 }
 
@@ -33,9 +33,9 @@ void draw()
     blueStripe[i].show();
     blueStripe[i].move();
   }
-  for (int i = 0; i < oddBallStripe.length; i++) {
-    oddBallStripe[i].move();
-    oddBallStripe[i].show();
+  for (int i = 0; i < oddBallStripeArray.length; i++) {
+    oddBallStripeArray[i].move();
+    oddBallStripeArray[i].show();
   }
 }
 
