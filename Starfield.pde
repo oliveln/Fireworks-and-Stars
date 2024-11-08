@@ -1,31 +1,33 @@
-Stripe [] redStripe = new Stripe[100];
-Stripe [] whiteStripe = new Stripe[100];
-Stripe [] blueStripe = new Stripe[100];
-oddBallStripe [] oddBallStripeArray = new oddBallStripe[10];
+Stripe [] redStripe = new Stripe[100];  //declare array of red stripes
+Stripe [] whiteStripe = new Stripe[100]; //declare array of white stripes
+Stripe [] blueStripe = new Stripe[100]; //declare array of blue stripes
+stars [] starsArray = new stars[10]; //declare array of stars (our oddball)
 
-//i want order to be red, white, then blue
 
-int originX = 250;
-int originY = 250;
+
+int originX = 250; // middle of page x
+int originY = 250; // middle of page y
 void setup()
 {
 
   noStroke();
   size(500, 500);
   for (int i = 0; i < redStripe.length; i++) {
-    redStripe[i] = new Stripe(1.0, 255);
-    whiteStripe[i] = new Stripe(2, 255, 0);
-    blueStripe[i] = new Stripe(255, (double)4); // note to future self: this is mixed up, fix it.
+    redStripe[i] = new Stripe(1.0, 255); //initalize array of red stripes 
+    whiteStripe[i] = new Stripe(2, 255, 0); //initalize array of white stripes, the 0 at the end is just for the sake of differentiating the constructors. it does nothing, ignore it.
+    blueStripe[i] = new Stripe(255, (double)4); //initalize array of blue stripes, casting speed as a double for the sake of differentiating
   }
-  for (int i = 0; i < oddBallStripeArray.length; i++) {
-    oddBallStripeArray[i] = new oddBallStripe();
+  for (int i = 0; i < starsArray.length; i++) {
+    starsArray[i] = new stars(); //intalize array of stars with no args
   }
 }
 
+
+//red, white, blue
 void draw()
 {
   background(0, 0, 0);
-  for (int i = 0; i < redStripe.length; i++) {
+  for (int i = 0; i < redStripe.length; i++) { //moves and shows rings/stripes 
     redStripe[i].show();
     redStripe[i].move();
     whiteStripe[i].show();
@@ -33,67 +35,67 @@ void draw()
     blueStripe[i].show();
     blueStripe[i].move();
   }
-  for (int i = 0; i < oddBallStripeArray.length; i++) {
-    oddBallStripeArray[i].move();
-    oddBallStripeArray[i].show();
+  for (int i = 0; i < starsArray.length; i++) { //moves and shows stars
+    starsArray[i].move();
+    starsArray[i].show();
   }
 }
 
-void mousePressed() {
+void mousePressed() { //when mouse pressed, call function to redo stripes
   redoStripes();
 }
 class Stripe
   //need to add overloader
 {
-  color myColor;
-  double myX, myY, myAngle, mySpeed, my2Speed;
-  Stripe() {
+  color myColor; //member var
+  double myX, myY, myAngle, mySpeed, my2Speed; // member vars
+  Stripe() { //only here since stars subclass needs a no arg constructor
   }
-  Stripe(float spd, int redColor) { // 1st and slowest ring red
+  Stripe(float spdSlow, int redColor) { // 1st and slowest ring red
     myColor = color(redColor, 0, 0);
     myX = originX;
     myY = originY;
     myAngle = (Math.random()*90);
-    mySpeed = spd;
+    mySpeed = spdSlow;
   }
 
-  Stripe(double spd, int whiteColor, int justToDiffereniate) { //2nd and medium speed ring white
+  Stripe(double spdMedium, int whiteColor, int justToDiffereniate) { //2nd and medium speed ring white
     myColor = color(whiteColor, whiteColor, whiteColor);
     myX = originX;
     myY = originY;
     myAngle = (Math.random()*90);
-    mySpeed = spd;
+    mySpeed = spdMedium;
   }
-  Stripe(int blueColor, double spd) { // 3rd and fastest ring blue
+  Stripe(int blueColor, double spdFast) { // 3rd and fastest ring blue
     myColor = color(0, 0, blueColor);
     myX = originX;
     myY = originY;
     myAngle = (Math.random()*90);
-    mySpeed = spd;
+    mySpeed = spdFast;
   }
 
-  void show() {
+  void show() { //the visible ellipses
     fill(myColor);
     ellipse((float)myX, (float)myY, 5, 5);
   }
-  void move() {
+  void move() { //movement
     myX += (double)(Math.cos(myAngle)*mySpeed);
     myY += (double)(Math.sin(myAngle)*mySpeed);
   }
 }
 
-void redoStripes() {
+void redoStripes() { //reinitalize stripes for the redo stripes, does not do anything to the stars on purpose
   for (int i = 0; i < redStripe.length; i++) {
     redStripe[i] = new Stripe(1.5, 255);
     whiteStripe[i] = new Stripe(3, 255, 0);
-    blueStripe[i] = new Stripe(255, (double)0.75); // note to future self: this is mixed up, fix it.
+    blueStripe[i] = new Stripe(255, (double)0.75); 
   }
 }
 
 
-class oddBallStripe extends Stripe //inherits from Stripe
+class stars extends Stripe //subclass that inherits from Stripe
 {
-  oddBallStripe() {
+  stars() {
     myColor = color(255, 255, 0);
     myX = originX;
     myY = originY;
